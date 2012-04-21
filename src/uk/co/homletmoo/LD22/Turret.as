@@ -18,6 +18,7 @@ package uk.co.homletmoo.LD22
 			gun = Image.createRect(2, 8, 0xA0FFB0);
 			
 			super(x, y, gun);
+			layer = -5;
 			
 			gun.originX = 1;
 			gun.originY = 8;
@@ -36,7 +37,7 @@ package uk.co.homletmoo.LD22
 			
 			bulletTime += FP.elapsed;
 			
-			if (bulletTime > 2 && Assets.DistanceTwoPoints(x, (FP.world as GameWorld).player.x, y, (FP.world as GameWorld).player.y) < 450)
+			if (bulletTime > 3.5 && Assets.DistanceTwoPoints(x, (FP.world as GameWorld).player.x, y, (FP.world as GameWorld).player.y) < 380)
 			{
 				bulletTime = 0;
 				FP.world.add(new Bullet(x, y, angle, playerX, playerY));

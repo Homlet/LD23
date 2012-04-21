@@ -3,6 +3,9 @@ package uk.co.homletmoo.LD22
 	import net.flashpunk.Entity;
 	import net.flashpunk.FP;
 	import net.flashpunk.graphics.Image;
+	import net.flashpunk.tweens.misc.VarTween;
+	import net.flashpunk.utils.Ease;
+	import net.flashpunk.graphics.Graphiclist;
 	
 	/**
 	 * ...
@@ -16,11 +19,11 @@ package uk.co.homletmoo.LD22
 		public function Rocket(x:int, y:int)
 		{
 			gun = Image.createRect(2, 8, 0xAAAA44);
-			
-			super(x, y, gun);
-			
 			gun.originX = 1;
 			gun.originY = 8;
+			
+			super(x, y, gun);
+			layer = -5;
 			
 			bulletTime = 0;
 		}
@@ -36,10 +39,10 @@ package uk.co.homletmoo.LD22
 			
 			bulletTime += FP.elapsed;
 			
-			if (bulletTime > 2 && Assets.DistanceTwoPoints(x, (FP.world as GameWorld).player.x, y, (FP.world as GameWorld).player.y) < 450)
+			if (bulletTime > 20 && Assets.DistanceTwoPoints(x, (FP.world as GameWorld).player.x, y, (FP.world as GameWorld).player.y) < 450)
 			{
 				bulletTime = 0;
-				FP.world.add(new Bullet(x, y, angle, playerX, playerY));
+				FP.world.add(new RocketAmmo(x, y, angle, playerX, playerY))
 			}
 			
 			super.update();

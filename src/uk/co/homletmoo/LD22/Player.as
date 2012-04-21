@@ -22,10 +22,14 @@ package uk.co.homletmoo.LD22
 		protected var wallJump:int;
 		protected var onWall:int;
 		
+		protected var fell:Boolean;
+		protected var dead:Boolean;
+		
 		public function Player(x:int, y:int)
 		{
 			super(x, y, Image.createRect(12, 12, 0xFF0000));
 			setHitbox(12, 12);
+			layer = -10;
 			
 			v = new Point();
 			a = new Point();
@@ -35,6 +39,9 @@ package uk.co.homletmoo.LD22
 			
 			wallJump = 0;
 			onWall = 0;
+			
+			fell = false;
+			dead = false;
 		}
 		
 		override public function update():void
@@ -46,6 +53,7 @@ package uk.co.homletmoo.LD22
 			if (collide(Assets.TYPE_LEVEL, x, y + 1))
 			{
 				onGround = true;
+				fell = false;
 				wallJump = 0;
 			}
 			
@@ -127,7 +135,7 @@ package uk.co.homletmoo.LD22
 			
 			motion();
 			
-			if (y > Assets.BOUND.bottom + FP.halfHeight) y = -FP.halfHeight;
+			if (y > Assets.BOUND.bottom + FP.height && !fell) { y = -FP.height; fell = true }
 			
 			super.update();
 		}

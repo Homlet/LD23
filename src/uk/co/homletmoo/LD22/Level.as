@@ -21,6 +21,7 @@ package uk.co.homletmoo.LD22
 		
 		override public function added():void
 		{
+			layer = 0;
 			
 			_tiles = new Tilemap(Assets.TILES_RAW, 1280, 720, 16, 16);
 			graphic = _tiles;

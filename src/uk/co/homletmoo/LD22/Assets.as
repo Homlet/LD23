@@ -1,4 +1,4 @@
-package uk.co.homletmoo.LD22 
+package uk.co.homletmoo.LD22
 {
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
@@ -35,6 +35,10 @@ package uk.co.homletmoo.LD22
 		[Embed(source = 'res/bg.png')]
 		public static const BG_RAW:Class;
 		
+		// Clouds
+		[Embed(source = 'res/clouds.png')]
+		public static const CLOUDS_RAW:Class;
+		
 		// OGMO -----------------------------------------------
 		
 		// Island
@@ -54,6 +58,9 @@ package uk.co.homletmoo.LD22
 		
 		// Bullet speed
 		public static const BULLET_SPEED:Number = 7;
+		
+		// Rocket speed
+		public static const ROCKET_SPEED:Number = 1.8;
 		
 		// Player constants -----------------------------------
 		

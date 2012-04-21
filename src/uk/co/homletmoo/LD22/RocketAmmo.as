@@ -1,4 +1,4 @@
-package uk.co.homletmoo.LD22 
+package uk.co.homletmoo.LD22
 {
 	import net.flashpunk.Entity;
 	import net.flashpunk.FP;
@@ -12,49 +12,45 @@ package uk.co.homletmoo.LD22
 	 * ...
 	 * @author Homletmoo
 	 */
-	public class Bullet extends Entity
+	public class RocketAmmo extends Entity
 	{
 		protected var shot:Image;
+		protected var start:Point;
+		protected var lifespan:Number;
+		
 		protected var flash:Image;
 		protected var flashFade:VarTween;
 		
-		protected var playerX:Number;
-		protected var playerY:Number;
-		
-		protected var start:Point;
-		
-		protected var lifespan:Number;
-		
-		public function Bullet(x:int, y:int, angle:Number, pX:int, pY:int)
+		public function RocketAmmo(x:int, y:int, angle:Number, pX:int, pY:int)
 		{
 			shot = Image.createCircle(2);
-			flash = Image.createRect(2, 1280, 0xffffff, 0.4);
+			flash = Image.createRect(2, 2600, 0xff5555, 1);
+			flash.originX = 1;
+			flash.originY = 2600;
 			flashFade = new VarTween();
-			flashFade.tween(flash, "alpha", 0, 0.3, Ease.expoIn);
+			flashFade.tween(flash, "alpha", 0, 7, Ease.expoIn);
 			
 			super(x, y, new Graphiclist(shot, flash));
 			setHitbox(2, 2);
 			layer = -3;
 			
-			flash.angle = angle + 180;
-			
-			flash.relative = false;
-			flash.x = x;
-			flash.y = y;
-			
-			playerX = pX + 6;
-			playerY = pY + 6;
-			
 			start = new Point(x, y);
 			
-			lifespan = 5;
+			lifespan = 7;
 			
 			addTween(flashFade, true);
 		}
 		
 		override public function update():void
 		{
-			moveTowards((playerX - start.x) * 100, (playerY - start.y) * 100, Assets.BULLET_SPEED);
+			var playerX:Number = (FP.world as GameWorld).player.x;
+			var playerY:Number = (FP.world as GameWorld).player.y;
+			
+			var angle:Number = (Math.atan2(playerY + (FP.world as GameWorld).player.halfHeight - y, playerX + (FP.world as GameWorld).player.halfWidth - x)) * 180 / Math.PI;
+			angle = -angle - 90;
+			flash.angle = angle;
+			
+			moveTowards(playerX, playerY, Assets.ROCKET_SPEED);
 			
 			lifespan -= FP.elapsed;
 			
