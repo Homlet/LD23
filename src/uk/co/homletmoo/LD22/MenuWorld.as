@@ -36,14 +36,6 @@ package uk.co.homletmoo.LD22
 		private var _fadeRect:Image = Image.createRect(FP.width, FP.height, 0);
 		private var _fadeEnt:Entity;
 		
-		
-		//============================= --- Debug --- =============================//
-																				   /*
-		private var _debugText:Text = new Text("Selected: " + _selected.toString());
-		private var _debugTextEnt:Entity = new Entity(0, 580, _debugText);
-																				   */
-		//=========================================================================//
-		
 		override public function begin():void
 		{
 			FP.screen.color = 0;
@@ -155,12 +147,6 @@ package uk.co.homletmoo.LD22
 					_bCreditsG.play("selected");
 				break;
 			}
-			
-			//================= --- Debug --- =================//
-															   /*
-			_debugText.text = "Selected: " + _selected.toString();
-															   */
-			//=================================================//
 			
 			super.update();
 		}
