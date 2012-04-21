@@ -1,5 +1,6 @@
 package uk.co.homletmoo.LD22
 {
+	import flash.geom.Point;
 	import flash.utils.ByteArray;
 	import net.flashpunk.*;
 	import net.flashpunk.graphics.Tilemap;
@@ -75,6 +76,17 @@ package uk.co.homletmoo.LD22
 				
 				FP.world.add(new Rocket(x, y));
 			}
+			
+			entityList = xmlData.Entities.coinpoint;
+			for each(dataElement in entityList)
+			{
+				x = dataElement.@x;
+				y = dataElement.@y;
+				
+				Globals.COINPOINTS.push(new Point(x, y));
+			}
+			
+			Assets.placeCoin();
 			
 		}
 		

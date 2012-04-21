@@ -42,11 +42,16 @@ package uk.co.homletmoo.LD22
 			
 			fell = false;
 			dead = false;
+			
+			type = Assets.TYPE_PLAYER;
 		}
 		
 		override public function update():void
 		{
-			// Handle death <--
+			if (dead)
+			{
+				return;
+			}
 			
 			// Is the player colliding with the ground
 			onGround = false;
@@ -136,6 +141,9 @@ package uk.co.homletmoo.LD22
 			motion();
 			
 			if (y > Assets.BOUND.bottom + FP.height && !fell) { y = -FP.height; fell = true }
+			
+			if (collide(Assets.TYPE_BULLET, x, y) || y > Assets.BOUND.bottom + FP.height + height)
+				dead = true;
 			
 			super.update();
 		}

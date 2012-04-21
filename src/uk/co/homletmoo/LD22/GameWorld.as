@@ -36,7 +36,7 @@ package uk.co.homletmoo.LD22
 				cloud.y = int(Math.random() * 720);
 				cloud.scrollX = Math.random() * 1 + 1;
 				cloud.scrollY = Math.random() * 1 + 1;
-				cloud.alpha = cloud.scrollX / cloud.scrollY / 4;
+				cloud.alpha = cloud.scrollX / cloud.scrollY / 5;
 				cloud.scaleX = cloud.scaleY = 1 * cloud.scrollX;
 				cloudlist.add(cloud);
 			}

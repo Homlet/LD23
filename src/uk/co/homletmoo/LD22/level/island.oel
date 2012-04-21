@@ -929,5 +929,22 @@
     <turret id="6" x="976" y="96" />
     <rocket id="7" x="96" y="368" />
     <rocket id="9" x="1200" y="496" />
+    <coinpoint id="8" x="432" y="240" />
+    <coinpoint id="10" x="352" y="288" />
+    <coinpoint id="11" x="624" y="240" />
+    <coinpoint id="12" x="768" y="224" />
+    <coinpoint id="13" x="880" y="96" />
+    <coinpoint id="14" x="1056" y="352" />
+    <coinpoint id="15" x="1200" y="384" />
+    <coinpoint id="16" x="752" y="560" />
+    <coinpoint id="17" x="272" y="128" />
+    <coinpoint id="18" x="96" y="48" />
+    <coinpoint id="19" x="128" y="304" />
+    <coinpoint id="20" x="288" y="384" />
+    <coinpoint id="21" x="192" y="544" />
+    <coinpoint id="22" x="336" y="576" />
+    <coinpoint id="23" x="576" y="32" />
+    <coinpoint id="24" x="528" y="208" />
+    <coinpoint id="25" x="944" y="368" />
   </Entities>
 </level>

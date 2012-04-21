@@ -33,7 +33,7 @@ package uk.co.homletmoo.LD22
 			flashFade.tween(flash, "alpha", 0, 0.3, Ease.expoIn);
 			
 			super(x, y, new Graphiclist(shot, flash));
-			setHitbox(2, 2);
+			setHitbox(4, 4);
 			layer = -3;
 			
 			flash.angle = angle + 180;
@@ -46,8 +46,9 @@ package uk.co.homletmoo.LD22
 			playerY = pY + 6;
 			
 			start = new Point(x, y);
-			
 			lifespan = 5;
+			
+			type = Assets.TYPE_BULLET;
 			
 			addTween(flashFade, true);
 		}
@@ -58,7 +59,7 @@ package uk.co.homletmoo.LD22
 			
 			lifespan -= FP.elapsed;
 			
-			if (lifespan <= 0)
+			if (lifespan <= 0 || collide(Assets.TYPE_PLAYER, x, y))
 				FP.world.remove(this);
 			
 			super.update();

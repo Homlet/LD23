@@ -2,6 +2,7 @@ package uk.co.homletmoo.LD22
 {
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
+	import net.flashpunk.FP;
 	
 	/**
 	 * ...
@@ -89,6 +90,15 @@ package uk.co.homletmoo.LD22
 		// Level and sublevel
 		public static const TYPE_LEVEL:String = 'l';
 		
+		// Bullet and rocket
+		public static const TYPE_BULLET:String = 'b';
+		
+		// Player
+		public static const TYPE_PLAYER:String = 'p';
+		
+		// Coin
+		public static const TYPE_COIN:String = 's';
+		
 		// Functions -----------------------------------------
 		
 		// Find the difference between two points
@@ -97,6 +107,13 @@ package uk.co.homletmoo.LD22
 			var dx:Number = x1 - x2;
 			var dy:Number = y1 - y2;
 			return Math.sqrt(dx * dx + dy * dy);
+		}
+		
+		// Place a new coin
+		public static function placeCoin():void
+		{
+			var coinPoint:Point = Globals.COINPOINTS[Math.floor(Math.random() * Globals.COINPOINTS.length)];
+			FP.world.add(new Coin(coinPoint.x, coinPoint.y));
 		}
 	}
 
