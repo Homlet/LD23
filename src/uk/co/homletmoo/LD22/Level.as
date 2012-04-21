@@ -22,12 +22,14 @@ package uk.co.homletmoo.LD22
 		override public function added():void
 		{
 			
-			_tiles = new Tilemap(/* TODO */);
+			_tiles = new Tilemap(Assets.TILES_RAW, 1280, 720, 16, 16);
 			graphic = _tiles;
-			_grid = new Grid(/* TODO */);
+			_grid = new Grid(1280, 720, 16, 16);
 			mask = _grid;
 			
-			loadLevel(/* TODO */);
+			loadLevel(Assets.OGMO_ISLAND);
+			
+			type = Assets.TYPE_LEVEL;
 		}
 		
 		private function loadLevel(xml:Class):void
@@ -39,13 +41,10 @@ package uk.co.homletmoo.LD22
 			
 			var tileList:XMLList;
 			var gridData:String;
-			
-			var playerList:XMLList;
+			var entityList:XMLList;
 			
 			tileList = xmlData.Tiles.tile;
 			gridData = xmlData.Grid.*;
-			
-			playerList = xmlData.Entities.Player;
 			
 			for each(dataElement in tileList)
 			{
@@ -55,17 +54,27 @@ package uk.co.homletmoo.LD22
 				
 				_tiles.setTile(x, y, id);
 			}
-			trace(gridData);
-			_grid.loadFromString(gridData, "", "\n");
-			trace(_grid.saveToString());
 			
-			for each(dataElement in playerList)
+			_grid.loadFromString(gridData, "", "\n");
+			
+			entityList = xmlData.Entities.turret;
+			for each(dataElement in entityList)
 			{
-				var playerX:int = dataElement.@x;
-				var playerY:int = dataElement.@y;
+				x = dataElement.@x;
+				y = dataElement.@y;
 				
-				FP.world.add(/* TODO */);
+				FP.world.add(new Turret(x, y));
 			}
+			
+			entityList = xmlData.Entities.rocket;
+			for each(dataElement in entityList)
+			{
+				x = dataElement.@x;
+				y = dataElement.@y;
+				
+				FP.world.add(new Rocket(x, y));
+			}
+			
 		}
 		
 	}

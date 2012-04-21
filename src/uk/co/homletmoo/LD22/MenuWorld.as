@@ -27,10 +27,10 @@ package uk.co.homletmoo.LD22
 		private var _bCredits:Entity;
 		
 		private var _artG:Image = new Image(Assets.ART_RAW);
-		private var _bPlayG:Spritemap = new Spritemap(Assets.BUTTONS_RAW, 125, 15);
-		private var _bHelpG:Spritemap = new Spritemap(Assets.BUTTONS_RAW, 125, 15);
-		private var _bOptionsG:Spritemap = new Spritemap(Assets.BUTTONS_RAW, 125, 15);
-		private var _bCreditsG:Spritemap = new Spritemap(Assets.BUTTONS_RAW, 125, 15);
+		private var _bPlayG:Spritemap = new Spritemap(Assets.BUTTONS_RAW, 250, 30);
+		private var _bHelpG:Spritemap = new Spritemap(Assets.BUTTONS_RAW, 250, 30);
+		private var _bOptionsG:Spritemap = new Spritemap(Assets.BUTTONS_RAW, 250, 30);
+		private var _bCreditsG:Spritemap = new Spritemap(Assets.BUTTONS_RAW, 250, 30);
 		
 		private var _fader:NumTween = new NumTween(finish);
 		private var _fadeRect:Image = Image.createRect(FP.width, FP.height, 0);
@@ -45,16 +45,10 @@ package uk.co.homletmoo.LD22
 			Input.define("select", Key.SPACE, Key.ENTER, Key.Z, Key.X, Key.C);
 			
 			_art = new Entity(0, 0, _artG);
-			_bPlay = new Entity(FP.halfWidth - (500 / 2), FP.height - 320, _bPlayG);
-			_bHelp = new Entity(FP.halfWidth - (500 / 2), FP.height - 240, _bHelpG);
-			_bOptions = new Entity(FP.halfWidth - (500 / 2), FP.height - 160, _bOptionsG);
-			_bCredits = new Entity(FP.halfWidth - (500 / 2), FP.height - 80, _bCreditsG);
-			
-			_artG.scale = 4;
-			_bPlayG.scale = 4;
-			_bHelpG.scale = 4;
-			_bOptionsG.scale = 4;
-			_bCreditsG.scale = 4;
+			_bPlay = new Entity(FP.halfWidth - _bPlayG.width / 2, FP.height - _bPlayG.height * 6, _bPlayG);
+			_bHelp = new Entity(FP.halfWidth - _bHelpG.width / 2, FP.height - _bHelpG.height * 4.5, _bHelpG);
+			_bOptions = new Entity(FP.halfWidth - _bOptionsG.width / 2, FP.height - _bOptionsG.height * 3, _bOptionsG);
+			_bCredits = new Entity(FP.halfWidth - _bCreditsG.width / 2, FP.height - _bCreditsG.height * 1.5, _bCreditsG);
 			
 			_bPlayG.add("unselected", [0], 0, false);
 			_bPlayG.add("selected", [1], 0, false);
@@ -74,7 +68,6 @@ package uk.co.homletmoo.LD22
 			fadeIn();
 			
 			add(_art);
-			add(_debugTextEnt);
 			add(_bPlay);
 			add(_bHelp);
 			add(_bOptions);

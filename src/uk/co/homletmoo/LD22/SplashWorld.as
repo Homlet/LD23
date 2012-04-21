@@ -28,7 +28,7 @@ package uk.co.homletmoo.LD22
 		{
 			_logos = new Entity(0, 0);
 			_fpStrip = new Spritemap(Assets.FP_RAW, 100, 100);
-			_fpStrip.scale = 3;
+			_fpStrip.scale = 2;
 			_fpStrip.y = FP.height - _fpStrip.scaledHeight;
 			_fpStrip.add("run", [0, 1, 2, 3, 4], 8, true);
 			_fpStrip.play("run");
