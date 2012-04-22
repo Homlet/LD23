@@ -4,6 +4,7 @@ package uk.co.homletmoo.LD23
 	import net.flashpunk.Entity;
 	import net.flashpunk.FP;
 	import net.flashpunk.graphics.Image;
+	import net.flashpunk.graphics.Spritemap;
 	import net.flashpunk.utils.Input;
 	
 	/**
@@ -26,11 +27,20 @@ package uk.co.homletmoo.LD23
 		protected var dead:Boolean;
 		protected var grace:Number;
 		
-		protected var img:Image;
+		protected var img:Spritemap;
 		
 		public function Player(x:int, y:int)
 		{
-			img = Image.createRect(12, 12, 0xFF0000);
+			img = new Spritemap(Assets.PLAYER_RAW, 12, 12);
+			img.add("right", [0], 0);
+			img.add("left", [4], 0);
+			img.add("rightWalk", [0, 1, 2, 3], 8);
+			img.add("leftWalk", [4, 5, 6, 7], 8);
+			img.add("rightJump", [8], 0);
+			img.add("leftJump", [9], 0);
+			img.add("rightWall", [10], 0);
+			img.add("leftWall", [11], 0);
+			img.play("right");
 			super(x, y, img);
 			setHitbox(12, 12);
 			layer = -10;
@@ -164,6 +174,29 @@ package uk.co.homletmoo.LD23
 			
 			if (Globals.PLAYER_HEALTH == 0 || y > Assets.BOUND.bottom + FP.height * 2)
 				dead = true;
+			
+			if (onWall != 0)
+				if (onWall == 1)
+					img.play("leftWall");
+				else
+					img.play("rightWall");
+			else if(onGround)
+				if (dirRight)
+					if (v.x == 0)
+						img.play("right");
+					else
+						img.play("rightWalk");
+				else
+					if (v.x == 0)
+						img.play("left");
+					else
+						img.play("leftWalk");
+			else
+				if (dirRight)
+					img.play("rightJump");
+				else
+					img.play("leftJump");
+			
 			
 			super.update();
 		}

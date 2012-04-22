@@ -69,6 +69,10 @@ package uk.co.homletmoo.LD23
 		[Embed(source = 'res/credits.png')]
 		public static const CREDS_RAW:Class;
 		
+		// Player
+		[Embed(source = 'res/player.png')]
+		public static const PLAYER_RAW:Class;
+		
 		// Sounds ---------------------------------------------
 		
 		// Coin
@@ -116,11 +120,20 @@ package uk.co.homletmoo.LD23
 		public static const S_ROCKET_RAW:Class;
 		public static const S_ROCKET:Sfx = new Sfx(S_ROCKET_RAW);
 		
+		// Music
+		[Embed(source = 'snd/music.mp3')]
+		public static const S_MUSIC_RAW:Class;
+		public static const S_MUSIC:Sfx = new Sfx(S_MUSIC_RAW);
+		
 		// OGMO -----------------------------------------------
 		
 		// Island
 		[Embed(source = 'level/island.oel', mimeType = 'application/octet-stream')]
 		public static const OGMO_ISLAND:Class
+		
+		// Island 2
+		[Embed(source = 'level/island2.oel', mimeType = 'application/octet-stream')]
+		public static const OGMO_ISLAND2:Class
 		
 		// Constants ------------------------------------------
 		

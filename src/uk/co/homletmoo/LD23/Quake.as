@@ -65,7 +65,7 @@ package uk.co.homletmoo.LD23
 				else
 				{
 					FP.screen.x = (Math.random()*intensity*FP.width*2-intensity*FP.width)*0.5;
-					FP.screen.y = (Math.random()*intensity*FP.height*2-intensity*FP.height)*0.5;
+					FP.screen.y = (Math.random() * intensity * FP.height * 2 - intensity * FP.height) * 0.5;
 				}
 			}
 		}

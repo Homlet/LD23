@@ -29,7 +29,10 @@ package uk.co.homletmoo.LD23
 			_grid = new Grid(1280, 720, 16, 16);
 			mask = _grid;
 			
-			loadLevel(Assets.OGMO_ISLAND);
+			if(Math.floor(Math.random() * 2) == 0)
+				loadLevel(Assets.OGMO_ISLAND);
+			else
+				loadLevel(Assets.OGMO_ISLAND2);
 			
 			type = Assets.TYPE_LEVEL;
 		}

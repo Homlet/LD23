@@ -17,14 +17,14 @@ package uk.co.homletmoo.LD23
 		{
 			super(640, 360, 59.97, false);
 			FP.screen.scale = Assets.SCALE;
-			FP.console.enable();
+			//FP.console.enable();
 			FP.console.toggleKey = Key.TAB;
 			FP.volume = 0.8;
 		}
 		
 		override public function init():void
 		{
-			FP.world = new MenuWorld();
+			FP.world = new SplashWorld();
 		}
 		
 		override public function update():void

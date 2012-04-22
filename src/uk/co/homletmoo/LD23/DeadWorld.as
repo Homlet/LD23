@@ -57,6 +57,8 @@ package uk.co.homletmoo.LD23
 			_fadeEnt = new Entity(0, 0, _fadeRect);
 			fadeIn();
 			
+			Assets.S_ROCKET.stop();
+			Assets.S_MUSIC.stop();
 			Assets.S_DEATH.play();
 			
 			add(_over);
