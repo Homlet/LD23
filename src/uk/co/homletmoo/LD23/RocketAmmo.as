@@ -1,4 +1,4 @@
-package uk.co.homletmoo.LD22
+package uk.co.homletmoo.LD23
 {
 	import net.flashpunk.Entity;
 	import net.flashpunk.FP;
@@ -39,6 +39,8 @@ package uk.co.homletmoo.LD22
 			
 			type = Assets.TYPE_BULLET;
 			
+			Assets.S_SHOOT.play();
+			
 			addTween(flashFade, true);
 		}
 		
@@ -56,7 +58,10 @@ package uk.co.homletmoo.LD22
 			lifespan -= FP.elapsed;
 			
 			if (lifespan <= 0 || collide(Assets.TYPE_PLAYER, x, y))
+			{
 				FP.world.remove(this);
+				Assets.S_EXPLODE.play();
+			}
 			
 			super.update();
 		}

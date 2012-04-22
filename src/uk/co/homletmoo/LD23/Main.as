@@ -1,4 +1,4 @@
-package uk.co.homletmoo.LD22
+package uk.co.homletmoo.LD23
 {
 	import net.flashpunk.debug.Console;
 	import net.flashpunk.Engine;
@@ -17,7 +17,7 @@ package uk.co.homletmoo.LD22
 		{
 			super(640, 360, 59.97, false);
 			FP.screen.scale = Assets.SCALE;
-			//FP.console.enable();
+			FP.console.enable();
 			FP.console.toggleKey = Key.TAB;
 		}
 		

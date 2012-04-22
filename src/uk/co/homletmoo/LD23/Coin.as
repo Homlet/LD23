@@ -1,4 +1,4 @@
-package uk.co.homletmoo.LD22 
+package uk.co.homletmoo.LD23 
 {
 	import net.flashpunk.Entity;
 	import net.flashpunk.FP;
@@ -38,7 +38,8 @@ package uk.co.homletmoo.LD22
 				if(Globals.BULLET_SPEED < 6) Globals.BULLET_SPEED += 0.1;
 				if(Globals.ROCKET_SPEED < 2) Globals.ROCKET_SPEED += 0.1;
 				if(Globals.BULLET_INTERVAL > 1.8) Globals.BULLET_INTERVAL -= 0.3;
-				if(Globals.ROCKET_INTERVAL > 22) Globals.ROCKET_INTERVAL -= 0.3;
+				if (Globals.ROCKET_INTERVAL > 22) Globals.ROCKET_INTERVAL -= 0.3;
+				Assets.S_COIN.play();
 				Assets.placeCoin();
 			}
 			

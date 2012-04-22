@@ -1,4 +1,4 @@
-package uk.co.homletmoo.LD22 
+package uk.co.homletmoo.LD23 
 {
 	import flash.filters.ConvolutionFilter;
 	import net.flashpunk.*;
@@ -34,6 +34,32 @@ package uk.co.homletmoo.LD22
 			Input.define(Assets.I_LEFT, Key.LEFT, Key.A);
 			Input.define(Assets.I_RIGHT, Key.RIGHT, Key.D);
 			
+			genClouds();
+			
+			level = new Level();
+			player = new Player(620, 240);
+			hud = new HUD();
+			
+			FP.setCamera(int(player.x + player.halfWidth - FP.halfWidth), int(FP.camera.y));
+			FP.setCamera(int(FP.camera.x), int(player.y + player.halfHeight - FP.halfHeight));
+			
+			add(background);
+			add(level);
+			add(player);
+			add(clouds);
+			add(hud);
+		}
+		
+		override public function update():void
+		{
+			super.update();
+			
+			FP.setCamera(int(player.x + player.halfWidth - FP.halfWidth), int(FP.camera.y));
+			if (player.y < Assets.BOUND.bottom + FP.height) FP.setCamera(int(FP.camera.x), int(player.y + player.halfHeight - FP.halfHeight));
+		}
+		
+		private function genClouds():void
+		{
 			cloudlist = new Graphiclist();
 			for (var i:int = 0; i < 12; i++)
 			{
@@ -66,27 +92,6 @@ package uk.co.homletmoo.LD22
 			}
 			background = new Entity(FP.camera.x, FP.camera.y, bglist);
 			background.layer = 5;
-			
-			level = new Level();
-			player = new Player(620, 240);
-			hud = new HUD();
-			
-			FP.setCamera(int(player.x + player.halfWidth - FP.halfWidth), int(FP.camera.y));
-			FP.setCamera(int(FP.camera.x), int(player.y + player.halfHeight - FP.halfHeight));
-			
-			add(background);
-			add(level);
-			add(player);
-			add(clouds);
-			add(hud);
-		}
-		
-		override public function update():void
-		{
-			super.update();
-			
-			if (player.x > Assets.BOUND.left - FP.halfWidth / 2 && player.x < Assets.BOUND.right + FP.halfWidth / 2) FP.setCamera(int(player.x + player.halfWidth - FP.halfWidth), int(FP.camera.y));
-			if (player.y < Assets.BOUND.bottom + FP.height) FP.setCamera(int(FP.camera.x), int(player.y + player.halfHeight - FP.halfHeight));
 		}
 		
 	}

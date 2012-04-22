@@ -1,4 +1,4 @@
-package uk.co.homletmoo.LD22 
+package uk.co.homletmoo.LD23 
 {
 	import flash.geom.Point;
 	import net.flashpunk.Entity;
@@ -55,7 +55,6 @@ package uk.co.homletmoo.LD22
 		{
 			if (dead)
 			{
-				Globals.reset();
 				FP.world = new DeadWorld();
 				FP.world.remove(this);
 			}
@@ -95,6 +94,7 @@ package uk.co.homletmoo.LD22
 				{
 					jumped = true;
 					v.y = -Assets.P_SPEED.y;
+					Assets.S_JUMP.play();
 				}
 				
 				//Wall jump left
@@ -107,6 +107,7 @@ package uk.co.homletmoo.LD22
 					else
 						v.x = -Assets.P_MAXSPEED.x * 1.5;
 					v.y = -Assets.P_SPEED.y;
+					Assets.S_JUMP.play();
 				}
 				
 				//Wall jump right
@@ -119,6 +120,7 @@ package uk.co.homletmoo.LD22
 					else
 						v.x = Assets.P_MAXSPEED.x * 1.5;
 					v.y = -Assets.P_SPEED.y;
+					Assets.S_JUMP.play();
 				}
 			}
 			

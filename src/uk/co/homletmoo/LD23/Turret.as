@@ -1,4 +1,4 @@
-package uk.co.homletmoo.LD22 
+package uk.co.homletmoo.LD23 
 {
 	import net.flashpunk.Entity;
 	import net.flashpunk.FP;
@@ -36,7 +36,9 @@ package uk.co.homletmoo.LD22
 			
 			bulletTime += FP.elapsed;
 			
-			if (bulletTime > Globals.BULLET_INTERVAL && Assets.DistanceTwoPoints(x, (FP.world as GameWorld).player.x, y, (FP.world as GameWorld).player.y) < 380)
+			if (bulletTime > Globals.BULLET_INTERVAL
+				&& Assets.DistanceTwoPoints(x, (FP.world as GameWorld).player.x, y, (FP.world as GameWorld).player.y) < 380
+				&& Assets.DistanceTwoPoints(x, (FP.world as GameWorld).player.x, y, (FP.world as GameWorld).player.y) > 50)
 			{
 				bulletTime = 0;
 				FP.world.add(new Bullet(x, y, angle, playerX, playerY));

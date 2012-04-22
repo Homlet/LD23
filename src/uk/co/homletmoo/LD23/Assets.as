@@ -1,8 +1,9 @@
-package uk.co.homletmoo.LD22
+package uk.co.homletmoo.LD23
 {
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	import net.flashpunk.FP;
+	import net.flashpunk.Sfx;
 	
 	/**
 	 * ...
@@ -51,6 +52,48 @@ package uk.co.homletmoo.LD22
 		// Rocket
 		[Embed(source = 'res/rocket.png')]
 		public static const ROCKET_RAW:Class;
+		
+		// Sounds ---------------------------------------------
+		
+		// Coin
+		[Embed(source = 'snd/coin.mp3')]
+		public static const S_COIN_RAW:Class;
+		public static const S_COIN:Sfx = new Sfx(S_COIN_RAW);
+		
+		// Death
+		[Embed(source = 'snd/die.mp3')]
+		public static const S_DEATH_RAW:Class;
+		public static const S_DEATH:Sfx = new Sfx(S_DEATH_RAW);
+		
+		// Menu enter
+		[Embed(source = 'snd/enter.mp3')]
+		public static const S_ENTER_RAW:Class;
+		public static const S_ENTER:Sfx = new Sfx(S_ENTER_RAW);
+		
+		// Menu Select
+		[Embed(source = 'snd/select.mp3')]
+		public static const S_SELECT_RAW:Class;
+		public static const S_SELECT:Sfx = new Sfx(S_SELECT_RAW);
+		
+		// Explosion
+		[Embed(source = 'snd/explode.mp3')]
+		public static const S_EXPLODE_RAW:Class;
+		public static const S_EXPLODE:Sfx = new Sfx(S_EXPLODE_RAW);
+		
+		// Hit
+		[Embed(source = 'snd/hurt.mp3')]
+		public static const S_HIT_RAW:Class;
+		public static const S_HIT:Sfx = new Sfx(S_HIT_RAW);
+		
+		// Death
+		[Embed(source = 'snd/jump.mp3')]
+		public static const S_JUMP_RAW:Class;
+		public static const S_JUMP:Sfx = new Sfx(S_JUMP_RAW);
+		
+		// Shoot
+		[Embed(source = 'snd/shoot.mp3')]
+		public static const S_SHOOT_RAW:Class;
+		public static const S_SHOOT:Sfx = new Sfx(S_SHOOT_RAW);
 		
 		// OGMO -----------------------------------------------
 		

@@ -1,4 +1,4 @@
-package uk.co.homletmoo.LD22 
+package uk.co.homletmoo.LD23 
 {
 	import net.flashpunk.Entity;
 	import net.flashpunk.FP;
@@ -39,7 +39,9 @@ package uk.co.homletmoo.LD22
 			
 			bulletTime += FP.elapsed;
 			
-			if (bulletTime > 20 && Assets.DistanceTwoPoints(x, (FP.world as GameWorld).player.x, y, (FP.world as GameWorld).player.y) < 450)
+			if (bulletTime > 20
+				&& Assets.DistanceTwoPoints(x, (FP.world as GameWorld).player.x, y, (FP.world as GameWorld).player.y) < 450
+				&& Assets.DistanceTwoPoints(x, (FP.world as GameWorld).player.x, y, (FP.world as GameWorld).player.y) > 100)
 			{
 				bulletTime = 0;
 				FP.world.add(new RocketAmmo(x, y, angle, playerX, playerY))
