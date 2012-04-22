@@ -4,6 +4,7 @@ package uk.co.homletmoo.LD23
 	import net.flashpunk.FP;
 	import net.flashpunk.graphics.Graphiclist;
 	import net.flashpunk.graphics.Image;
+	import net.flashpunk.graphics.Spritemap;
 	import net.flashpunk.tweens.misc.VarTween;
 	import net.flashpunk.utils.Ease;
 	import flash.geom.Point;
@@ -14,7 +15,7 @@ package uk.co.homletmoo.LD23
 	 */
 	public class RocketAmmo extends Entity
 	{
-		protected var shot:Image;
+		protected var shot:Spritemap;
 		protected var start:Point;
 		protected var lifespan:Number;
 		
@@ -23,14 +24,17 @@ package uk.co.homletmoo.LD23
 		
 		public function RocketAmmo(x:int, y:int, angle:Number, pX:int, pY:int)
 		{
-			shot = Image.createCircle(2);
-			flash = Image.createRect(2, 2600, 0xff5555, 1);
-			flash.originX = 1;
+			shot = new Spritemap(Assets.ROCKETAMMO_RAW, 6, 10);
+			shot.add('main', [0, 1], 10, true);
+			shot.play('main');
+			shot.originX = 3;
+			shot.originY = 5;
+			flash = Image.createRect(1, 2600, 0xff5555, 1);
 			flash.originY = 2600;
 			flashFade = new VarTween();
 			flashFade.tween(flash, "alpha", 0, 7, Ease.expoIn);
 			
-			super(x, y, new Graphiclist(shot, flash));
+			super(x, y, new Graphiclist(flash, shot));
 			setHitbox(4, 4);
 			layer = -3;
 			
@@ -39,7 +43,7 @@ package uk.co.homletmoo.LD23
 			
 			type = Assets.TYPE_BULLET;
 			
-			Assets.S_SHOOT.play();
+			Assets.S_ROCKET.play();
 			
 			addTween(flashFade, true);
 		}
@@ -52,6 +56,7 @@ package uk.co.homletmoo.LD23
 			var angle:Number = (Math.atan2(playerY + (FP.world as GameWorld).player.halfHeight - y, playerX + (FP.world as GameWorld).player.halfWidth - x)) * 180 / Math.PI;
 			angle = -angle - 90;
 			flash.angle = angle;
+			shot.angle = angle;
 			
 			moveTowards(playerX, playerY, Globals.ROCKET_SPEED);
 			
@@ -61,6 +66,7 @@ package uk.co.homletmoo.LD23
 			{
 				FP.world.remove(this);
 				Assets.S_EXPLODE.play();
+				Assets.QUAKE.start(1.5, 0.4);
 			}
 			
 			super.update();

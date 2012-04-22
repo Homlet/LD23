@@ -53,6 +53,22 @@ package uk.co.homletmoo.LD23
 		[Embed(source = 'res/rocket.png')]
 		public static const ROCKET_RAW:Class;
 		
+		// Rocket ammo
+		[Embed(source = 'res/rocketammo.png')]
+		public static const ROCKETAMMO_RAW:Class;
+		
+		// Coin
+		[Embed(source = 'res/coin.png')]
+		public static const COIN_RAW:Class;
+		
+		// Help
+		[Embed(source = 'res/help.png')]
+		public static const HELP_RAW:Class;
+		
+		// Credits
+		[Embed(source = 'res/credits.png')]
+		public static const CREDS_RAW:Class;
+		
 		// Sounds ---------------------------------------------
 		
 		// Coin
@@ -95,6 +111,11 @@ package uk.co.homletmoo.LD23
 		public static const S_SHOOT_RAW:Class;
 		public static const S_SHOOT:Sfx = new Sfx(S_SHOOT_RAW);
 		
+		// Rocket
+		[Embed(source = 'snd/rocket.mp3')]
+		public static const S_ROCKET_RAW:Class;
+		public static const S_ROCKET:Sfx = new Sfx(S_ROCKET_RAW);
+		
 		// OGMO -----------------------------------------------
 		
 		// Island
@@ -111,6 +132,9 @@ package uk.co.homletmoo.LD23
 		
 		// Bounding box for camera
 		public static const BOUND:Rectangle = new Rectangle(0, 0, 1280, 720);
+		
+		// Camera quake
+		public static const QUAKE:Quake = new Quake();
 		
 		// Player constants -----------------------------------
 		

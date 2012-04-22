@@ -1,9 +1,11 @@
 package uk.co.homletmoo.LD23 
 {
+	import flash.utils.Endian;
 	import net.flashpunk.*;
 	import net.flashpunk.graphics.Image;
 	import net.flashpunk.graphics.Spritemap;
 	import net.flashpunk.graphics.Text;
+	import net.flashpunk.tweens.misc.VarTween;
 	import net.flashpunk.utils.Input;
 	import net.flashpunk.utils.Key;
 	import net.flashpunk.tweens.misc.NumTween;
@@ -19,6 +21,19 @@ package uk.co.homletmoo.LD23
 		private var _pressed:Number = 0.3;
 		private var _select:Boolean = false;
 		private var BUTTONS:uint = 3;
+		
+		private var _credg:Image = new Image(Assets.CREDS_RAW);
+		private var _cred:Entity;
+		private var _credTween:VarTween;
+		private var _credTweenO:VarTween;
+		
+		private var _helpg:Image = new Image(Assets.HELP_RAW);
+		private var _help:Entity;
+		private var _helpTween:VarTween;
+		private var _helpTweenO:VarTween;
+		
+		// 0 = menu, 1 = help, 2 = credits
+		private var _screen:int = 0;
 		
 		private var _art:Entity;
 		private var _bPlay:Entity;
@@ -47,6 +62,16 @@ package uk.co.homletmoo.LD23
 			_bHelp = new Entity(FP.halfWidth - _bHelpG.width / 2, FP.height - _bHelpG.height * 3, _bHelpG);
 			_bCredits = new Entity(FP.halfWidth - _bCreditsG.width / 2, FP.height - _bCreditsG.height * 1.5, _bCreditsG);
 			
+			_help = new Entity(FP.width, 0, _helpg);
+			_help.layer = -40;
+			_helpTween = new VarTween();
+			_helpTweenO = new VarTween();
+			
+			_cred = new Entity(-FP.width, 0, _credg);
+			_cred.layer = -40;
+			_credTween = new VarTween();
+			_credTweenO = new VarTween();
+			
 			_bPlayG.add("unselected", [0], 0, false);
 			_bPlayG.add("selected", [1], 0, false);
 			_bHelpG.add("unselected", [2], 0, false);
@@ -59,29 +84,36 @@ package uk.co.homletmoo.LD23
 			_bCreditsG.play("unselected");
 			
 			_fadeEnt = new Entity(0, 0, _fadeRect);
+			_fadeEnt.layer = -50;
 			fadeIn();
 			
 			add(_art);
 			add(_bPlay);
 			add(_bHelp);
 			add(_bCredits);
+			add(_help);
+			add(_cred);
 			
 			add(_fadeEnt);
 			addTween(_fader);
+			addTween(_helpTween);
+			addTween(_helpTweenO);
+			addTween(_credTween);
+			addTween(_credTweenO);
 		}
 		
 		override public function update():void
 		{
 			_fadeRect.alpha = _fader.value;
 			
-			if (Input.pressed("up") && _pressed > 0.1)
+			if (Input.pressed("up") && _pressed > 0.1 && _screen == 0)
 			{
 				Assets.S_SELECT.play();
 				_pressed = 0;
 				_selected--;
 			}
 			
-			if (Input.pressed("down") && _pressed > 0.1)
+			if (Input.pressed("down") && _pressed > 0.1 && _screen == 0)
 			{
 				Assets.S_SELECT.play();
 				_pressed = 0;
@@ -90,10 +122,40 @@ package uk.co.homletmoo.LD23
 			
 			if (Input.pressed("select") && _pressed > 0.1)
 			{
-				Assets.S_ENTER.play();
-				_pressed = 0;
-				_select = true;
-				fadeOut();
+				if (_screen == 0)
+				{
+					Assets.S_ENTER.play();
+					_pressed = 0;
+					switch(_selected)
+					{
+						case 0:
+							fadeOut();
+							_select = true;
+						break;
+						
+						case 1:
+							_helpTween.tween(_help, "x", 0, 2, Ease.bounceOut);
+							_helpTween.start();
+							_screen = 1;
+						break;
+						
+						case 2:
+							_credTween.tween(_cred, "x", 0, 2, Ease.bounceOut);
+							_credTween.start();
+							_screen = 2;
+						break;
+					}
+				}else if(_screen == 1)
+				{
+					_helpTweenO.tween(_help, "x", FP.width, 1, Ease.sineIn);
+					_helpTweenO.start();
+					_screen = 0;
+				}else if(_screen == 2)
+				{
+					_credTweenO.tween(_cred, "x", -FP.width, 1, Ease.sineIn);
+					_credTweenO.start();
+					_screen = 0;
+				}
 			}
 			
 			if (_selected >= BUTTONS)
@@ -146,25 +208,8 @@ package uk.co.homletmoo.LD23
 		{
 			if (_select)
 			{				
-				switch(_selected)
-				{
-					case 0:
-						FP.world = new GameWorld;
-						Globals.reset();
-					break;
-					
-					// Placeholders ---
-					case 1:
-						_select = false;
-						fadeIn();
-					break;
-					
-					case 2:
-						_select = false;
-						fadeIn();
-					break;
-					// ----------------
-				}
+				FP.world = new GameWorld;
+				Globals.reset();
 			}
 		}
 		

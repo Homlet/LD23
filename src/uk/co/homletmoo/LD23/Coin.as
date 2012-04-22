@@ -3,6 +3,7 @@ package uk.co.homletmoo.LD23
 	import net.flashpunk.Entity;
 	import net.flashpunk.FP;
 	import net.flashpunk.graphics.Image;
+	import net.flashpunk.graphics.Spritemap;
 	
 	/**
 	 * ...
@@ -10,11 +11,13 @@ package uk.co.homletmoo.LD23
 	 */
 	public class Coin extends Entity
 	{
-		protected var img:Image;
+		protected var img:Spritemap;
 		
 		public function Coin(x:int, y:int)
 		{
-			img = Image.createCircle(6, 0xE0E044);
+			img = new Spritemap(Assets.COIN_RAW, 14, 16);
+			img.add('main', [0, 1, 2, 3], 8, true);
+			img.play('main');
 			super(x, y, img);
 			setHitbox(12, 12);
 			layer = -1;
@@ -34,7 +37,6 @@ package uk.co.homletmoo.LD23
 			{
 				FP.world.remove(this);
 				Globals.SCORE += Globals.COIN_VALUE;
-				Globals.COIN_VALUE += 20;
 				if(Globals.BULLET_SPEED < 6) Globals.BULLET_SPEED += 0.1;
 				if(Globals.ROCKET_SPEED < 2) Globals.ROCKET_SPEED += 0.1;
 				if(Globals.BULLET_INTERVAL > 1.8) Globals.BULLET_INTERVAL -= 0.3;
