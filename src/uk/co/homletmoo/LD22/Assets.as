@@ -40,6 +40,18 @@ package uk.co.homletmoo.LD22
 		[Embed(source = 'res/clouds.png')]
 		public static const CLOUDS_RAW:Class;
 		
+		// Hearts
+		[Embed(source = 'res/health.png')]
+		public static const HEARTS_RAW:Class;
+		
+		// Turret
+		[Embed(source = 'res/turret.png')]
+		public static const TURRET_RAW:Class;
+		
+		// Rocket
+		[Embed(source = 'res/rocket.png')]
+		public static const ROCKET_RAW:Class;
+		
 		// OGMO -----------------------------------------------
 		
 		// Island
@@ -56,12 +68,6 @@ package uk.co.homletmoo.LD22
 		
 		// Bounding box for camera
 		public static const BOUND:Rectangle = new Rectangle(0, 0, 1280, 720);
-		
-		// Bullet speed
-		public static const BULLET_SPEED:Number = 7;
-		
-		// Rocket speed
-		public static const ROCKET_SPEED:Number = 1.8;
 		
 		// Player constants -----------------------------------
 		

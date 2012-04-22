@@ -51,7 +51,7 @@ package uk.co.homletmoo.LD22
 			angle = -angle - 90;
 			flash.angle = angle;
 			
-			moveTowards(playerX, playerY, Assets.ROCKET_SPEED);
+			moveTowards(playerX, playerY, Globals.ROCKET_SPEED);
 			
 			lifespan -= FP.elapsed;
 			

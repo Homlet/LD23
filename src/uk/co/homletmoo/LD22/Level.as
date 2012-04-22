@@ -65,7 +65,7 @@ package uk.co.homletmoo.LD22
 				x = dataElement.@x;
 				y = dataElement.@y;
 				
-				FP.world.add(new Turret(x, y));
+				FP.world.add(new Turret(x + 8, y + 8));
 			}
 			
 			entityList = xmlData.Entities.rocket;
@@ -74,7 +74,7 @@ package uk.co.homletmoo.LD22
 				x = dataElement.@x;
 				y = dataElement.@y;
 				
-				FP.world.add(new Rocket(x, y));
+				FP.world.add(new Rocket(x + 8, y + 8));
 			}
 			
 			entityList = xmlData.Entities.coinpoint;

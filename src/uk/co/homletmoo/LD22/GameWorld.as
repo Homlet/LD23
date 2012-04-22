@@ -1,8 +1,12 @@
 package uk.co.homletmoo.LD22 
 {
+	import flash.filters.ConvolutionFilter;
 	import net.flashpunk.*;
 	import net.flashpunk.graphics.Graphiclist;
 	import net.flashpunk.graphics.Image;
+	import net.flashpunk.tweens.misc.MultiVarTween;
+	import net.flashpunk.tweens.misc.VarTween;
+	import net.flashpunk.utils.Ease;
 	import net.flashpunk.utils.Input;
 	import net.flashpunk.utils.Key;
 	
@@ -14,6 +18,8 @@ package uk.co.homletmoo.LD22
 	{
 		public var level:Level;
 		public var player:Player;
+		
+		protected var hud:HUD;
 		
 		protected var background:Entity;
 		protected var bglist:Graphiclist;
@@ -63,6 +69,7 @@ package uk.co.homletmoo.LD22
 			
 			level = new Level();
 			player = new Player(620, 240);
+			hud = new HUD();
 			
 			FP.setCamera(int(player.x + player.halfWidth - FP.halfWidth), int(FP.camera.y));
 			FP.setCamera(int(FP.camera.x), int(player.y + player.halfHeight - FP.halfHeight));
@@ -71,6 +78,7 @@ package uk.co.homletmoo.LD22
 			add(level);
 			add(player);
 			add(clouds);
+			add(hud);
 		}
 		
 		override public function update():void

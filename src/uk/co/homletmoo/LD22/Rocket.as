@@ -18,8 +18,8 @@ package uk.co.homletmoo.LD22
 		
 		public function Rocket(x:int, y:int)
 		{
-			gun = Image.createRect(2, 8, 0xAAAA44);
-			gun.originX = 1;
+			gun = new Image(Assets.ROCKET_RAW);
+			gun.originX = 8;
 			gun.originY = 8;
 			
 			super(x, y, gun);

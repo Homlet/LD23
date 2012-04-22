@@ -55,7 +55,7 @@ package uk.co.homletmoo.LD22
 		
 		override public function update():void
 		{
-			moveTowards((playerX - start.x) * 100, (playerY - start.y) * 100, Assets.BULLET_SPEED);
+			moveTowards((playerX - start.x) * 100, (playerY - start.y) * 100, Globals.BULLET_SPEED);
 			
 			lifespan -= FP.elapsed;
 			

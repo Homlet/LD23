@@ -24,10 +24,14 @@ package uk.co.homletmoo.LD22
 		
 		protected var fell:Boolean;
 		protected var dead:Boolean;
+		protected var grace:Number;
+		
+		protected var img:Image;
 		
 		public function Player(x:int, y:int)
 		{
-			super(x, y, Image.createRect(12, 12, 0xFF0000));
+			img = Image.createRect(12, 12, 0xFF0000);
+			super(x, y, img);
 			setHitbox(12, 12);
 			layer = -10;
 			
@@ -42,6 +46,7 @@ package uk.co.homletmoo.LD22
 			
 			fell = false;
 			dead = false;
+			grace = 0;
 			
 			type = Assets.TYPE_PLAYER;
 		}
@@ -50,7 +55,9 @@ package uk.co.homletmoo.LD22
 		{
 			if (dead)
 			{
-				return;
+				Globals.reset();
+				FP.world = new DeadWorld();
+				FP.world.remove(this);
 			}
 			
 			// Is the player colliding with the ground
@@ -142,7 +149,18 @@ package uk.co.homletmoo.LD22
 			
 			if (y > Assets.BOUND.bottom + FP.height && !fell) { y = -FP.height; fell = true }
 			
-			if (collide(Assets.TYPE_BULLET, x, y) || y > Assets.BOUND.bottom + FP.height + height)
+			if (grace >= 3 && !dead)
+			{
+				img.alpha = 1;
+				if (collide(Assets.TYPE_BULLET, x, y))
+				{
+					img.alpha = 0.5;
+					Globals.PLAYER_HEALTH--;
+					grace = 0;
+				}
+			}else grace += FP.elapsed;
+			
+			if (Globals.PLAYER_HEALTH == 0 || y > Assets.BOUND.bottom + FP.height * 2)
 				dead = true;
 			
 			super.update();
