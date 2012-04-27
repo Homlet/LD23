@@ -34,8 +34,6 @@ package uk.co.homletmoo.LD23
 		
 		override public function begin():void
 		{
-			FP.screen.color = 0;
-			
 			Input.define("down", Key.DOWN, Key.S);
 			Input.define("up", Key.UP, Key.W);
 			Input.define("select", Key.SPACE, Key.ENTER, Key.Z, Key.X, Key.C);

@@ -43,7 +43,7 @@ package uk.co.homletmoo.LD23
 			FP.setCamera(int(player.x + player.halfWidth - FP.halfWidth), int(FP.camera.y));
 			FP.setCamera(int(FP.camera.x), int(player.y + player.halfHeight - FP.halfHeight));
 			
-			Assets.S_MUSIC.loop();
+			Assets.S_MUSIC.loop(0.4);
 			
 			add(background);
 			add(level);

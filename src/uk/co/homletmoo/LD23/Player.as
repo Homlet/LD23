@@ -104,7 +104,7 @@ package uk.co.homletmoo.LD23
 				{
 					jumped = true;
 					v.y = -Assets.P_SPEED.y;
-					Assets.S_JUMP.play();
+					Assets.S_JUMP.play(0.6);
 				}
 				
 				//Wall jump left
@@ -117,7 +117,7 @@ package uk.co.homletmoo.LD23
 					else
 						v.x = -Assets.P_MAXSPEED.x * 1.5;
 					v.y = -Assets.P_SPEED.y;
-					Assets.S_JUMP.play();
+					Assets.S_JUMP.play(0.6);
 				}
 				
 				//Wall jump right
@@ -130,7 +130,7 @@ package uk.co.homletmoo.LD23
 					else
 						v.x = Assets.P_MAXSPEED.x * 1.5;
 					v.y = -Assets.P_SPEED.y;
-					Assets.S_JUMP.play();
+					Assets.S_JUMP.play(0.6);
 				}
 			}
 			

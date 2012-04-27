@@ -50,9 +50,7 @@ package uk.co.homletmoo.LD23
 		private var _fadeEnt:Entity;
 		
 		override public function begin():void
-		{
-			FP.screen.color = 0;
-			
+		{			
 			Input.define("down", Key.DOWN, Key.S);
 			Input.define("up", Key.UP, Key.W);
 			Input.define("select", Key.SPACE, Key.ENTER, Key.Z, Key.X, Key.C);
@@ -104,58 +102,57 @@ package uk.co.homletmoo.LD23
 		
 		override public function update():void
 		{
+			FP.screen.color = 0x190E0E;
+			
 			_fadeRect.alpha = _fader.value;
 			
 			if (Input.pressed("up") && _pressed > 0.1 && _screen == 0)
 			{
-				Assets.S_SELECT.play();
+				Assets.S_SELECT.play(0.9);
 				_pressed = 0;
 				_selected--;
 			}
 			
 			if (Input.pressed("down") && _pressed > 0.1 && _screen == 0)
 			{
-				Assets.S_SELECT.play();
+				Assets.S_SELECT.play(0.9);
 				_pressed = 0;
 				_selected++;
 			}
 			
-			if (Input.pressed("select") && _pressed > 0.1)
+			if (Input.pressed("select") && _pressed > 0.1 && _screen == 0)
 			{
-				if (_screen == 0)
+				Assets.S_ENTER.play(0.7);
+				_pressed = 0;
+				switch(_selected)
 				{
-					Assets.S_ENTER.play();
-					_pressed = 0;
-					switch(_selected)
-					{
-						case 0:
-							fadeOut();
-							_select = true;
-						break;
-						
-						case 1:
-							_helpTween.tween(_help, "x", 0, 2, Ease.bounceOut);
-							_helpTween.start();
-							_screen = 1;
-						break;
-						
-						case 2:
-							_credTween.tween(_cred, "x", 0, 2, Ease.bounceOut);
-							_credTween.start();
-							_screen = 2;
-						break;
-					}
-				}else if(_screen == 1)
-				{
-					_helpTweenO.tween(_help, "x", FP.width, 1, Ease.sineIn);
-					_helpTweenO.start();
-					_screen = 0;
-				}else if(_screen == 2)
-				{
-					_credTweenO.tween(_cred, "x", -FP.width, 1, Ease.sineIn);
-					_credTweenO.start();
-					_screen = 0;
+					case 0:
+						fadeOut();
+						_select = true;
+					break;
+					
+					case 1:
+						_helpTween.tween(_help, "x", 0, 2, Ease.bounceOut);
+						_helpTween.start();
+						_screen = 1;
+					break;
+					
+					case 2:
+						_credTween.tween(_cred, "x", 0, 2, Ease.bounceOut);
+						_credTween.start();
+						_screen = 2;
+					break;
 				}
+			}else if(Input.pressed("select") && _pressed > 0.1 && _screen == 1 && _help.x == 0)
+			{
+				_helpTweenO.tween(_help, "x", FP.width, 0.6, Ease.sineIn);
+				_helpTweenO.start();
+				_screen = 0;
+			}else if(Input.pressed("select") && _pressed > 0.1 && _screen == 2 && _cred.x == 0)
+			{
+				_credTweenO.tween(_cred, "x", -FP.width, 0.6, Ease.sineIn);
+				_credTweenO.start();
+				_screen = 0;
 			}
 			
 			if (_selected >= BUTTONS)
