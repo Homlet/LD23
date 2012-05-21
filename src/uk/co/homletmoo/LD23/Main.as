@@ -15,7 +15,7 @@ package uk.co.homletmoo.LD23
 	{
 		public function Main():void
 		{
-			super(640, 360, 59.97, false);
+			super(640, 360, 60, false);
 			FP.screen.scale = Assets.SCALE;
 			//FP.console.enable();
 			FP.console.toggleKey = Key.TAB;
@@ -24,7 +24,7 @@ package uk.co.homletmoo.LD23
 		
 		override public function init():void
 		{
-			FP.world = new SplashWorld();
+			FP.world = new MenuWorld();
 		}
 		
 		override public function update():void

@@ -67,6 +67,9 @@ package uk.co.homletmoo.LD23
 				FP.world.remove(this);
 				Assets.S_EXPLODE.play();
 				Assets.QUAKE.start(1.5, 0.4);
+				
+				if (collide(Assets.TYPE_PLAYER, x, y))
+					(FP.world as GameWorld).player.hurt();
 			}
 			
 			super.update();

@@ -24,6 +24,8 @@ package uk.co.homletmoo.LD23
 		protected var background:Entity;
 		protected var bglist:Graphiclist;
 		protected var sky:Image;
+		protected var vignette:Image;
+		protected var vigE:Entity;
 		
 		protected var clouds:Entity;
 		protected var cloudlist:Graphiclist;
@@ -50,6 +52,7 @@ package uk.co.homletmoo.LD23
 			add(player);
 			add(clouds);
 			add(hud);
+			add(vigE);
 		}
 		
 		override public function update():void
@@ -62,6 +65,12 @@ package uk.co.homletmoo.LD23
 		
 		private function genClouds():void
 		{
+			vignette = new Image(Assets.VIG_RAW);
+			vignette.scrollX = vignette.scrollY = 0;
+			vignette.alpha = 0.4;
+			vigE = new Entity(FP.camera.x, FP.camera.y, vignette);
+			vigE.layer = -25;
+			
 			cloudlist = new Graphiclist();
 			for (var i:int = 0; i < 12; i++)
 			{

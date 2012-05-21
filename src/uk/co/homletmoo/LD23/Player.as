@@ -3,6 +3,7 @@ package uk.co.homletmoo.LD23
 	import flash.geom.Point;
 	import net.flashpunk.Entity;
 	import net.flashpunk.FP;
+	import net.flashpunk.graphics.Graphiclist;
 	import net.flashpunk.graphics.Image;
 	import net.flashpunk.graphics.Spritemap;
 	import net.flashpunk.utils.Input;
@@ -28,6 +29,7 @@ package uk.co.homletmoo.LD23
 		protected var grace:Number;
 		
 		protected var img:Spritemap;
+		protected var point:Image;
 		
 		public function Player(x:int, y:int)
 		{
@@ -41,7 +43,11 @@ package uk.co.homletmoo.LD23
 			img.add("rightWall", [10], 0);
 			img.add("leftWall", [11], 0);
 			img.play("right");
-			super(x, y, img);
+			point = new Image(Assets.POINT_RAW);
+			point.alpha = 0.7;
+			point.originX = -80;
+			point.originY = 1;
+			super(x, y, new Graphiclist(point, img));
 			setHitbox(12, 12);
 			layer = -10;
 			
@@ -63,6 +69,14 @@ package uk.co.homletmoo.LD23
 		
 		override public function update():void
 		{
+			var coins:Array = new Array();
+			FP.world.getClass(Coin, coins)
+			for each(var c:Coin in coins)
+			{
+				point.angle = -(Math.atan2(c.y + c.halfHeight - y + 4, c.x + c.halfWidth - x + 3) * 180 / Math.PI);
+				break;
+			}
+			
 			if (dead)
 			{
 				FP.world = new DeadWorld();
@@ -118,6 +132,7 @@ package uk.co.homletmoo.LD23
 						v.x = -Assets.P_MAXSPEED.x * 1.5;
 					v.y = -Assets.P_SPEED.y;
 					Assets.S_JUMP.play(0.6);
+					dirRight = false;
 				}
 				
 				//Wall jump right
@@ -131,6 +146,7 @@ package uk.co.homletmoo.LD23
 						v.x = Assets.P_MAXSPEED.x * 1.5;
 					v.y = -Assets.P_SPEED.y;
 					Assets.S_JUMP.play(0.6);
+					dirRight = true;
 				}
 			}
 			
@@ -162,15 +178,8 @@ package uk.co.homletmoo.LD23
 			if (y > Assets.BOUND.bottom + FP.height && !fell) { y = -FP.height; fell = true }
 			
 			if (grace >= 3 && !dead)
-			{
 				img.alpha = 1;
-				if (collide(Assets.TYPE_BULLET, x, y))
-				{
-					img.alpha = 0.5;
-					Globals.PLAYER_HEALTH--;
-					grace = 0;
-				}
-			}else grace += FP.elapsed;
+			else grace += FP.elapsed;
 			
 			if (Globals.PLAYER_HEALTH == 0 || y > Assets.BOUND.bottom + FP.height * 2)
 				dead = true;
@@ -259,6 +268,16 @@ package uk.co.homletmoo.LD23
 			}
 			
 			return true;
+		}
+		
+		public function hurt():void
+		{
+			if (grace >= 3)
+			{
+				img.alpha = 0.5;
+				Globals.PLAYER_HEALTH--;
+				grace = 0;
+			}
 		}
 		
 	}

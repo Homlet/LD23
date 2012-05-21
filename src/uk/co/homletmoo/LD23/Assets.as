@@ -61,6 +61,10 @@ package uk.co.homletmoo.LD23
 		[Embed(source = 'res/coin.png')]
 		public static const COIN_RAW:Class;
 		
+		// Coin pointer
+		[Embed(source = 'res/pointer.png')]
+		public static const POINT_RAW:Class;
+		
 		// Help
 		[Embed(source = 'res/help.png')]
 		public static const HELP_RAW:Class;
@@ -72,6 +76,10 @@ package uk.co.homletmoo.LD23
 		// Player
 		[Embed(source = 'res/player.png')]
 		public static const PLAYER_RAW:Class;
+		
+		// Vignette overlay
+		[Embed(source = 'res/vignette.png')]
+		public static const VIG_RAW:Class;
 		
 		// Sounds ---------------------------------------------
 		
